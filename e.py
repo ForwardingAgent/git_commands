@@ -56,7 +56,7 @@ except:
 try:
     app_phone = AppPhone({"Балакирев": 1234567890, "Сергей": 98450647365, "Работа": 112})
 except:
-    print("шибка при создании объекта класса AppPhone")
+    print("Ошибка при создании объекта класса AppPhone")
 
 assert hasattr(smart, "model") and hasattr(smart, "apps") and hasattr(smart, "add_app") and \
        hasattr(smart, "remove_app"), "не все атрибуты и методы есть в объекте класса SmartPhone"
