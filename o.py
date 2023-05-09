@@ -1,35 +1,39 @@
-class Complex:
-    def __init__(self, real: (int or float), img: (int or float)) -> None:
-        self.real = real
-        self.img = img
+# 2.3.10
+class Bag:
+    _things = []
 
-    @property
-    def real(self):
-        return self.__real
-    
-    @real.setter
-    def real(self, real):
-        if type(real) not in (int, float):
-            raise ValueError("Неверный тип данных.")
-        self.__real = real
+    def __init__(self, max_weight) -> None:
+        self.max_weight = max_weight
+        self.things = self._things
+        
+    def add_thing(self, thing):  # добавление нового предмета в рюкзак (добавление возможно, если суммарный вес (max_weight) не будет превышен, иначе добавление не происходит);
+        self.thing = thing
+        if self.max_weight > self.thing.weight:
+            self.things.append(self.thing)
+            self.max_weight -= self.thing.weight
 
-    @property
-    def img(self):
-        return self.__img
-    
-    @img.setter
-    def img(self, img):
-        if type(img) not in (int, float):
-            raise ValueError("Неверный тип данных.")
-        self.__img = img
+    def remove_thing(self, indx):  # удаление предмета по индексу списка __things;
+        self.max_weight += self.thing[indx].weight
+        del __class__.__things[indx]
 
-    def __abs__(self, cm):
-        self.cm = cm
-        c_abs = (cm.real * cm.real + cm.img * cm.img) ** 0.5
-        return c_abs
+    def get_total_weight(self):  # возвращает суммарный вес предметов в рюкзаке.
+        res = 0
+        for i in self.things:
+            res = res + i.weight
+        return res
 
 
-cmp = Complex(7, 8)
-cmp.real = 3
-cmp.img = 4
-print(abs(cmp))
+class Thing:
+    def __init__(self, name: str, weight: (int or float)) -> None:
+        self.name = name
+        self.weight = weight
+
+
+bag = Bag(1000)
+bag.add_thing(Thing("Книга по Python", 100))
+bag.add_thing(Thing("Котелок", 500))
+bag.add_thing(Thing("Спички", 20))
+bag.add_thing(Thing("Бумага", 100))
+w = bag.get_total_weight()
+for t in bag.things:
+    print(f"{t.name}: {t.weight}")
