@@ -1,9 +1,6 @@
-import re
+import random
 
-lst = []
-with open(r'/Users/nikolas/Desktop/Git_practice/nums.txt') as f:
-    for i in f:
-        nums = re.findall(r'\d+', i)
-        lst.extend(nums)
-sum = sum(map(int, lst))
-print(sum)
+my_set = ()
+while len(my_set) != 7:
+    my_set.add(random.randrange(1, 50))
+print(*sorted(my_set))
