@@ -6,37 +6,24 @@
 #    
 #gen = gen()
 
-#def flip(func):
-#    def inner(*args, **kwargs):
-#        print(type(args))
-#        a = reversed(args)
-#
-#        return func(*a, **kwargs)
-#    return inner
-#
-#@flip
-#def div(x, y, show=False):
-#    res = x / y
-#    if show:
-#        print(res)
-#    return res
-#
-#div(2, 4, show=True)
-##################
+def decrypt(encrypted_text, n):
+    if n == 0:
+        return encrypted_text
+    else:
+        s1 = ''
+        s2 = ''
+        for i, v in enumerate(encrypted_text):
+            if i % 2 != 0:
+                s1 += v
+            else:
+                s2 += v
+        encrypted_text = s1 + s2
+        n -= 1
+        decrypt(encrypted_text, n)
+    # return encrypted_text
+
+def encrypt(text, n):
+    pass
 
 
-def my_print(func):
-    def inner(*args, **kwargs):
-        args = list(args)
-        args = [i.upper() if type(i) is str else i for i in args]
-        kwargs = {k: v.upper() if type(v) is str else v for k, v in kwargs.items()}
-        return func(*args, **kwargs)
-
-    return inner
-
-
-print = my_print(print)
-
-print('hi', 'there', end='!')
-print(111, 222, 333, sep='xxx')
-# divbythree = [  "Yes" if number % 3 == 0 else "No" for number in range(1,20)]
+print(decrypt("This is a test!", 2))  # "s eT ashi tist!"))
